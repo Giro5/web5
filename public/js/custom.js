@@ -55,3 +55,10 @@ $(function () {
         e.preventDefault();
     });
 });
+
+$.ajax({
+    url: "../php/visit-count.php",
+    success: function (data) {
+        document.getElementById("visit-count").innerText = data;
+    }
+})

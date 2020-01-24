@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>MY-GIRO</title>
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="content w-100 d-flex justify-content-center flex-column bg-dark">
-        <div id="slider" class="w-100 d-none d-lg-block" style="height: 765px;">
+        <div id="slider" class="w-100 d-none d-lg-block" style="height: 765px; z-index: 100;">
             <div class="container w-100 h-100 p-0" style="max-width: 100%">
                 <div class="bd-example w-100 h-100">
                     <div id="carouselExampleCaptions" class="carousel slide w-100 h-100" data-ride="carousel">
@@ -191,6 +191,11 @@
                                     <h5 class="widget-title mb-3 text-white">Продано гироскутеров<span></span></h5>
                                     <p class=" text-white" style="font-size: 19px">234</p>
                                 </div>
+                                <div class="widget no-box">
+                                    <hr style="height: 1px; background-color: #557174">
+                                    <h5 class="widget-title mb-3 text-white">Посещений страницы<span></span></h5>
+                                    <p id="visit-count" class=" text-white" style="font-size: 19px"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -214,10 +219,11 @@
         <div class="container">
             <div class="form">
                 <div class="form-group">
-                    <h4 class="text-white text-center" for="exampleFormControlTextarea1">Хотите получать специальные
+                    <h4 class="text-white text-center" for="exampleFormControlTextarea1">Хотите получать
+                        специальные
                         предложения?<br> Подпишитесь на рассылку.</h4>
-                    <input class="form-control my-2" id="exampleFormControlTextarea1" placeholder="Имя"></textarea>
-                    <input class="form-control my-2" id="exampleFormControlTextarea1" placeholder="Email"></input>
+                    <input class="form-control my-3" id="exampleFormControlTextarea1" placeholder="Имя"></textarea>
+                    <input class="form-control my-3" id="exampleFormControlTextarea1" placeholder="Email"></input>
                     <button type="button" class="btn btn-light mt-2">Подписаться</button>
                 </div>
             </div>
@@ -226,10 +232,9 @@
 
     </div>
 
-    <div class="bg-danger w-100 d-none d-lg-flex justify-content-center" style="height: 50px">
-        <div id="scr7" class="scrollings mt-1 text-white text-center bg-dark"
-            style="border-radius: 100%; height: 40px; width: 40px; font-size: 30px; cursor: pointer">^</div>
-    </div>
+    <div id="scr7" class="scrollings mt-1 text-white text-center bg-danger position-fixed"
+        style="border-radius: 100%; height: 40px; width: 40px; font-size: 30px; cursor: pointer; bottom:50px; right: 50px;">
+        ^</div>
 </body>
 
 </html>

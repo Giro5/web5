@@ -1,22 +1,20 @@
 <?php
-$msg = "";
-
 include "../../private/connect.php";
 
 if (!$link) {
-    $msg = "Не удалось подключиться к базе";
+    echo "<em>Не удалось подключиться к базе</em>";
     echo ("<script>console.log('" . mysqli_connect_errno() . " " . mysqli_connect_error() . "');</script>");
 }
 
-$query = mysqli_query($link, "insert into counter (id,info) values (NULL,'" . $_SERVER["HTTP_USER_AGENT"] . " " . $_SERVER["REMOTE_ADDR"] . "');");
+include "../../private/insert.php";
 if (!$query) {
     echo ("<script>console.log('" . mysqli_connect_errno() . " " . mysqli_connect_error() . "');</script>");
 }
 
-$query = mysqli_query($link, "select * from counter;");
+include "../../private/select.php";
 if (!$query) {
-    $msg = "Не удалось получить данные";
+    echo "<em>Не удалось получить данные</em>";
     echo ("<script>console.log('" . mysqli_connect_errno() . " " . mysqli_connect_error() . "');</script>");
 } else {
-    echo $query->num_rows;
+    echo $query->fetch_row()[0];
 }

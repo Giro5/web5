@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,6 @@
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.4.1.min.js" type="application/javascript"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
     <script src="js/bootstrap.bundle.min.js" type="application/javascript"></script>
@@ -17,39 +17,78 @@
 </head>
 
 <body>
-    <div class="" id="main">
-        <div class="bg-dark d-flex justify-content-between text-white flex-column " id="okno">
-            <form action="login/index.php" method="POST">
-                <div class="form-group">
-                    <label for="exampleInputLogin1">Login</label>
-                    <input type="text" name="login" class="form-control w-100" id="exampleInputLogin1" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control w-100" id="exampleInputPassword1" required>
-                </div>
-                <button type="submit" class="btn btn-light bg-dark text-white">Войти</button>
-            </form>
-            <a class="btn btn-danger my-2" href="#">Закрыть</a>
+    <div class="modal fade modal-auth" tabindex="-1" role="dialog" aria-labelledby="Lblmodal-auth" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark d-flex justify-content-between text-white flex-column text-align-center p-3">
+                <form action="login/auth.php" method="POST">
+                    <div class="form-group">
+                        <label for="exampleInputLogin1">Login</label>
+                        <input type="text" name="login" class="form-control w-100" id="exampleInputLogin1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="password" class="form-control w-100" id="exampleInputPassword1" required>
+                    </div>
+                    <button type="submit" class="btn btn-light w-100">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-catalog" tabindex="-1" role="dialog" aria-labelledby="Lblmodal-catalog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark d-flex justify-content-between text-white flex-column text-align-center p-3">
+                <form action="catalog/insert_ware.php" method="POST">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Name</label>
+                        <input type="text" name="name" class="form-control w-100" id="exampleInputName1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputInfo1">Info</label>
+                        <input type="text" name="info" class="form-control w-100" id="exampleInputInfo1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPrice1">Price</label>
+                        <input type="text" name="price" class="form-control w-100" id="exampleInputPrice1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputImage1">Image</label>
+                        <input type="text" name="image" class="form-control w-100" id="exampleInputImage1" required>
+                    </div>
+                    <button type="submit" class="btn btn-light w-100 my-1">Добавить</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <div id="nav" class="nav">
-        <div class="head w-100 d-lg-flex bg-dark justify-content-center flex-row">
-            <div class="container d-flex py-3" style="max-width: 1024px">
+        <div class="head w-100 d-flex bg-dark flex-row justify-content-around">
+            <div class="d-flex py-3" style="max-width: 1024px">
                 <img src="img/logo.png" class="d-inline-block align-top" alt="" style="border-radius: 20px;">
-                <form class=" ml-4 mt-1">
+                <form class="ml-4 mt-1">
                     <h1 class="text-white" style="text-shadow: 1px 1px 2px black">Продажа гироскутеров</h1>
                     <h5 class="text-white" style="text-shadow: 1px 1px 2px black">Наш телефон: +7 (123) 456-78-90</h5>
                     <button class="btn btn-outline-light my-2 my-sm-0 bg-dark text-white" style="border-radius: 5px;" type="button">Заказать звонок</button>
                 </form>
+                <?php
+                if (!$_SESSION['auth']) {
+                ?>
+                    <button type="button" class="btn btn-dark btn-outline-light ml-4 my-auto" data-toggle="modal" data-target=".modal-auth">
+                        Вход
+                    </button>
+                <?php
+                } else {
+                ?>
+                    <div class="text-white ml-4 my-auto">
+                        <h5>Вы авторизированы как:<br><?php echo $_SESSION["login"]; ?></h5>
+                        <a class="btn btn-outline-light bg-dark text-white" href="/login/exit.php">
+                            Выйти
+                        </a>
+                    </div>
+                <?php
+                }
+                ?>
             </div>
-            <?php
-
-            ?>
-            <a class="m-auto btn btn-outline-light bg-dark text-white" href="#main">
-                Вход
-            </a>
         </div>
     </div>
 
@@ -99,6 +138,18 @@
                 ^</div>
         </div>
 
+        <?php
+        if ($_SESSION['auth']) {
+        ?>
+            <div class="bg-warning w-100 d-flex justify-content-center" style="height: 50px;">
+                <button type="button" class="btn btn-danger my-auto" data-toggle="modal" data-target=".modal-catalog">
+                    Добавить товар
+                </button>
+            </div>
+        <?php
+        }
+        ?>
+
         <div id="click-here" class="w-100 bg-dark" style=" background-size: cover; background-repeat: no-repeat">
 
             <?php
@@ -108,7 +159,7 @@
             ?>
 
                 <div class="container w-100 h-100 d-flex justify-content-center flex-row bg-danger" style="max-width: 994px;">
-                    <img class="my-1" style="border-radius: 10px;" src="img/<?php echo $row["image"] ?>" alt="..." style="width: 100%;">
+                    <img class="my-1" style="border-radius: 10px; width: 450px;" src="<?php echo $row["image"] ?>" alt="...">
                     <div class="bg-danger h-75 w-50 d-flex justify-content-center flex-column m-auto" style="border-radius: 5px">
                         <div class="card-body">
                             <h5 class="card-title text-white"><?php echo $row["name"] ?></h5>

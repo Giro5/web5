@@ -158,8 +158,8 @@
             while ($row = mysqli_fetch_assoc($query)) {
             ?>
 
-                <div class="container w-100 h-100 d-flex justify-content-center flex-row bg-danger" style="max-width: 994px;">
-                    <img class="my-1" style="border-radius: 10px; width: 450px;" src="<?php echo $row["image"] ?>" alt="...">
+                <div class="container w-100 h-100 d-flex justify-content-center flex-row bg-danger" style="max-width: 994px;" data-id="<?php echo $row["id"] ?>">
+                    <img class="my-1" style="border-radius: 10px; width: 450px;" src="<?php echo $row["image"] ?>">
                     <div class="bg-danger h-75 w-50 d-flex justify-content-center flex-column m-auto" style="border-radius: 5px">
                         <div class="card-body">
                             <h5 class="card-title text-white"><?php echo $row["name"] ?></h5>
@@ -168,6 +168,15 @@
                         <div class="card-footer">
                             <h5 class="text-white"><?php echo $row["price"] ?></h5>
                             <button class="btn btn-outline-light my-2 my-sm-0" style="border-radius: 5px" type="submit">Заказать</button>
+                            <?php
+                            if ($_SESSION["auth"]) {
+                            ?>
+                                <button type="button" class="btn btn-warning my-auto" data-toggle="modal" data-target=".modal-tovar">
+                                    Изменить
+                                </button>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

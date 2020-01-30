@@ -168,6 +168,7 @@
                         <div class="card-footer">
                             <h5 class="text-white"><?php echo $row["price"] ?></h5>
                             <button class="btn btn-outline-light my-2 my-sm-0" style="border-radius: 5px" type="submit">Заказать</button>
+                            <!--                             
                             <?php
                             if ($_SESSION["auth"]) {
                             ?>
@@ -177,6 +178,7 @@
                             <?php
                             }
                             ?>
+                             -->
                         </div>
                     </div>
                 </div>

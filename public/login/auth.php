@@ -5,7 +5,7 @@ $pass = $_POST["password"];
 include "../../private/connect.php";
 include "../../private/check_login.php";
 if ($query->num_rows == 1) {
-    $_SESSION["login"] = "admin";
+    $_SESSION["login"] = $_POST["login"];
     $_SESSION["auth"] = true;
 }
 header("Location: /");

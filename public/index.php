@@ -168,17 +168,9 @@
                         <div class="card-footer">
                             <h5 class="text-white"><?php echo $row["price"] ?></h5>
                             <button class="btn btn-outline-light my-2 my-sm-0" style="border-radius: 5px" type="submit">Заказать</button>
-                            <!--                             
-                            <?php
-                            if ($_SESSION["auth"]) {
-                            ?>
-                                <button type="button" class="btn btn-warning my-auto" data-toggle="modal" data-target=".modal-tovar">
-                                    Изменить
-                                </button>
-                            <?php
-                            }
-                            ?>
-                             -->
+
+
+
                         </div>
                     </div>
                 </div>

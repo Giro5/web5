@@ -61,4 +61,13 @@ $.ajax({
     success: function (data) {
         document.getElementById("visit-count").innerText = data;
     }
-})
+});
+
+$.ajax({
+    url: "../php/test.php?a=text1&b=text2",
+    method: "POST",
+    dataType: "text",
+    success: function (data) {
+        console.log(data);
+    }
+});
